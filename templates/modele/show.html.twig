@@ -1,0 +1,18 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<form>
+	<h1>
+		{{ Modele.nom }}
+	</h1>
+    <p>
+		{{ Modele.marque.nom }}
+	</p>
+
+	<p>{{ Modele.prixDeDepart }}€</p>
+
+{{form(update)}}
+
+</form>
+
+{% endblock %}

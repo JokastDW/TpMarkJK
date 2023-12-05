@@ -1,0 +1,15 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+	<h1>
+		{{ marque.nom }}
+	</h1>
+    <p>
+		{{ marque.logo }}
+	</p>
+    <p>
+		{{marque.date|date('d-m-Y')}}
+	</p>
+
+{{form(update)}}
+{% endblock %}

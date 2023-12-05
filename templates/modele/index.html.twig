@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ModeleController!
+{% endblock %}
+
+{% block body %}
+	<h1>Liste des modeles</h1>
+	{% if modeles is not empty %}
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Nom</th>
+					<th>Marque</th>
+					<th>Prix</th>
+					<th>Image</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for m in modeles %}
+					<tr>
+						<td>{{ m.nom }}</td>
+						<td>
+                        {{ m.marque.nom }}
+
+                        {% if m.marque.logo is not null %}
+                            <img src="{{asset('uploads/marque/'~ m.marque.logo) }}"  style="width: 100px;"
+                        {% endif %}</td>
+						<td>{{ m.prixDeDepart }}€</td>
+						
+						<td>
+                        {% if m.image is not null %}
+                        <img src="{{asset('uploads/modele/'~ m.image) }}"  style="width: 100px;"
+                        {% endif %}
+                        </td>
+						<td>
+							<a class="btn btn-primary" href="{{path('modele', {'id': m.id})}}">Afficher</a>
+							/
+							<a class="btn btn-danger" href="{{path('delete_modele', {'id': m.id})}}">Supprimer</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	{% else %}
+		<p>Il n'y a aucun modele</p>
+	{% endif %}
+
+	{{form(ajout)}}{% endblock %}
